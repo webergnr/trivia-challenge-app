@@ -7,7 +7,14 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { getQuiz, insertAnswer, nextQuestion } from "../../store/ducks/quiz";
 
-import { Container, Footer, Loading, LoadingContainer } from "./styles";
+import {
+  Container,
+  Footer,
+  Loading,
+  LoadingContainer,
+  Progress,
+  Text,
+} from "./styles";
 import { RootState } from "../../store";
 
 import { StackNavigationProp } from "@react-navigation/stack";
@@ -63,12 +70,15 @@ const Quiz: React.FC<IQuizProps> = ({ navigation }) => {
         <Container>
           <Header text={questions[currentQuestion].category} />
           <Card text={questions[currentQuestion].text} />
+          <Progress>
+            <Text>{`${currentQuestion + 1}/${questions.length}`}</Text>
+          </Progress>
           <Footer>
-            <Button onPress={handleTrueButton} type="success">
-              True
-            </Button>
             <Button onPress={handleFalseButton} type="danger">
               False
+            </Button>
+            <Button onPress={handleTrueButton} type="success">
+              True
             </Button>
           </Footer>
         </Container>

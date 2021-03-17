@@ -45,4 +45,5 @@ export interface IQuiz {
 export interface IInitialQuizState extends IQuiz {
   currentQuestion: number;
   loadingQuiz: boolean;
+  gameState: boolean;
 }
