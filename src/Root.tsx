@@ -1,26 +1,18 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
-import Home from "./screens/Home";
 
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import { StatusBar } from "expo-status-bar";
 
-const Stack = createStackNavigator();
+import Router from "./routers";
+
+import { Provider } from "react-redux";
+import store from "./store";
 
 const App: React.FC = () => {
   return (
-    <>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="Home"
-            component={Home}
-            options={{ headerShown: false }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+    <Provider store={store}>
+      <Router />
       <StatusBar style="auto" />
-    </>
+    </Provider>
   );
 };
 

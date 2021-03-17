@@ -5,7 +5,7 @@ interface IButtonProps {
 }
 
 export const ButtonContainer = styled.TouchableOpacity<IButtonProps>`
-  display: flex;
+  flex: 1;
   align-items: center;
   justify-content: center;
   padding: 12px;
