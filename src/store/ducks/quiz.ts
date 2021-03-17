@@ -4,11 +4,13 @@ export const GET_QUIZ = "GET_QUIZ";
 export const INSERT_ANSWER = "INSERT_ANSWER";
 export const SET_QUIZ = "SET_QUIZ";
 export const SET_LOADING = "SET_LOADING";
+export const INCREMENT_CURRENT_QUESTION = "INCREMENT_CURRENT_QUESTION";
 
 const initialState: IInitialQuizState = {
   questions: [],
   currentQuestion: 0,
   loadingQuiz: false,
+  gameState: true,
 };
 
 export const getQuiz = () => ({
@@ -23,6 +25,18 @@ export const setLoading = (status: boolean) => ({
 export const setQuiz = (quiz: IQuiz) => ({
   type: SET_QUIZ,
   payload: quiz,
+});
+
+export const nextQuestion = () => ({
+  type: INCREMENT_CURRENT_QUESTION,
+});
+
+export const insertAnswer = (answer: boolean, questionIndex: number) => ({
+  type: INSERT_ANSWER,
+  payload: {
+    answer,
+    questionIndex,
+  },
 });
 
 export default (
@@ -42,7 +56,14 @@ export default (
       const { payload } = action;
       const newState = { ...state };
       newState.questions[payload.questionIndex].userAnswer = payload.answer;
-      return newState;
+      return { ...newState };
+    }
+    case INCREMENT_CURRENT_QUESTION: {
+      const currentQuestion = state.currentQuestion;
+      if (currentQuestion + 1 < state.questions.length) {
+        return { ...state, currentQuestion: currentQuestion + 1 };
+      }
+      return { ...state, gameState: false };
     }
     default:
       return state;

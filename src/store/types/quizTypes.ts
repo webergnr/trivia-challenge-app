@@ -1,4 +1,9 @@
-import { INSERT_ANSWER, SET_QUIZ, SET_LOADING } from "../ducks/quiz";
+import {
+  INSERT_ANSWER,
+  SET_QUIZ,
+  SET_LOADING,
+  INCREMENT_CURRENT_QUESTION,
+} from "../ducks/quiz";
 
 export interface ISetQuizAction {
   type: typeof SET_QUIZ;
@@ -18,10 +23,15 @@ export interface IInsertAnswerAction {
   };
 }
 
+export interface IIncrementCurrentQuestion {
+  type: typeof INCREMENT_CURRENT_QUESTION;
+}
+
 export type IQuizActions =
   | ISetQuizAction
   | IInsertAnswerAction
-  | ISetLoadingAction;
+  | ISetLoadingAction
+  | IIncrementCurrentQuestion;
 
 export interface IQuiz {
   questions: {
