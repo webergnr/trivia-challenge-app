@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { getQuiz } from "../../store/ducks/quiz";
 
-import { Container, Footer } from "./styles";
+import { Container, Footer, Loading, LoadingContainer } from "./styles";
 import { RootState } from "../../store";
 
 const Home: React.FC = () => {
@@ -17,23 +17,36 @@ const Home: React.FC = () => {
     dispatch(getQuiz());
   }, [dispatch]);
 
-  const count = useSelector((state: RootState) => state.quiz);
+  const { count, isLoading, currentQuestion, questions } = useSelector(
+    (state: RootState) => ({
+      count: state.quiz.questions.length,
+      isLoading: state.quiz.loadingQuiz,
+      currentQuestion: state.quiz.currentQuestion,
+      questions: state.quiz.questions,
+    })
+  );
 
-  console.log(count)
-
-  return (
-    <Container>
-      <Header text="This is the question test!" />
-      <Card text="hello" />
-      <Footer>
-        <Button onPress={() => console.log("test")} type="success">
-          True
-        </Button>
-        <Button onPress={() => console.log("test")} type="danger">
-          False
-        </Button>
-      </Footer>
-    </Container>
+  return isLoading ? (
+    <LoadingContainer>
+      <Loading />
+    </LoadingContainer>
+  ) : (
+    <>
+      {questions.length > 0 && (
+        <Container>
+          <Header text={questions[currentQuestion].category} />
+          <Card text={questions[currentQuestion].text} />
+          <Footer>
+            <Button onPress={() => console.log("test")} type="success">
+              True
+            </Button>
+            <Button onPress={() => console.log("test")} type="danger">
+              False
+            </Button>
+          </Footer>
+        </Container>
+      )}
+    </>
   );
 };
 
