@@ -3,6 +3,7 @@ import {
   SET_QUIZ,
   SET_LOADING,
   INCREMENT_CURRENT_QUESTION,
+  RESET_STATE,
 } from "../ducks/quiz";
 
 export interface ISetQuizAction {
@@ -27,10 +28,15 @@ export interface IIncrementCurrentQuestion {
   type: typeof INCREMENT_CURRENT_QUESTION;
 }
 
+export interface IResetState {
+  type: typeof RESET_STATE;
+}
+
 export type IQuizActions =
   | ISetQuizAction
   | IInsertAnswerAction
   | ISetLoadingAction
+  | IResetState
   | IIncrementCurrentQuestion;
 
 export interface IQuiz {

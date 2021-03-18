@@ -19,12 +19,13 @@ export const AnswerContainer = styled(LinearGradient).attrs(
       },
     } as LinearGradientProps)
 )<IAnswerContainerProps>`
+  /* flex: 1; */
+  /* height: 100%; */
+  /* height: 120px; */
   flex-direction: row;
-  height: 80px;
   padding: 10px;
   border-radius: 10px;
   margin: 10px;
-  justify-content: stretch;
   align-items: center;
 `;
 

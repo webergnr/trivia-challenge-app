@@ -14,20 +14,27 @@ import {
 } from "./styles";
 
 interface IAnswerProps {
-  text: string;
+  category: string;
+  question: string;
+  correctAnswer: boolean;
   isCorrect: boolean;
 }
 
-const Answer: React.FC<IAnswerProps> = ({ text, isCorrect }) => {
+const Answer: React.FC<IAnswerProps> = ({
+  category,
+  question,
+  correctAnswer,
+  isCorrect,
+}) => {
   return (
     <AnswerContainer isCorrect={isCorrect}>
       <IconContainer>
         {isCorrect ? <IconCorrectAnswer /> : <IconIncorrectAnswer />}
       </IconContainer>
       <InformationContainer>
-        <CategoryText>cat test</CategoryText>
-        <QuestionText>cat test</QuestionText>
-        <CorrectAnswerText>correct answer: false</CorrectAnswerText>
+        <CategoryText>{category}</CategoryText>
+        <QuestionText>{question}</QuestionText>
+        <CorrectAnswerText>correct answer: {String(correctAnswer)}</CorrectAnswerText>
       </InformationContainer>
     </AnswerContainer>
   );

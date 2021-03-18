@@ -5,6 +5,7 @@ export const INSERT_ANSWER = "INSERT_ANSWER";
 export const SET_QUIZ = "SET_QUIZ";
 export const SET_LOADING = "SET_LOADING";
 export const INCREMENT_CURRENT_QUESTION = "INCREMENT_CURRENT_QUESTION";
+export const RESET_STATE = "RESET_STATE";
 
 const initialState: IInitialQuizState = {
   questions: [],
@@ -39,6 +40,10 @@ export const insertAnswer = (answer: boolean, questionIndex: number) => ({
   },
 });
 
+export const resetState = () => ({
+  type: RESET_STATE,
+});
+
 export default (
   state = initialState,
   action: IQuizActions
@@ -64,6 +69,9 @@ export default (
         return { ...state, currentQuestion: currentQuestion + 1 };
       }
       return { ...state, gameState: false };
+    }
+    case RESET_STATE: {
+      return initialState;
     }
     default:
       return state;

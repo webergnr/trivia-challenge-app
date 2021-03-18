@@ -62,7 +62,7 @@ const Quiz: React.FC<IQuizProps> = ({ navigation }) => {
 
   return isLoading ? (
     <LoadingContainer>
-      <Loading />
+      <Loading size="large" />
     </LoadingContainer>
   ) : (
     <>
